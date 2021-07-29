@@ -44,3 +44,14 @@ fun dates_in_month(lod: (int * int * int) list, month: int) =
             then hd lod :: dates_in_month(tl lod, month)
             else dates_in_month(tl lod, month)
           end
+
+(* 5. Write a function dates_in_months that takes a list of dates and a list of months (i.e., an int list) and returns a list holding the dates from the argument list of dates that are in any of the months in the list of months. Assume the list of months has no number repeated. Hint: Use your answer to the previous problem and SML’s list-append operator (@). *)
+
+fun dates_in_months(lod: (int * int * int) list,  lom: int list) =
+     if null lom
+     then []
+     else dates_in_month(lod, hd lom) @ dates_in_months(lod, tl lom)
+          
+(* 6. Write a function get_nth that takes a list of strings and an int n and returns the nth element of the list where the head of the list is 1st. Do not worry about the case where the list has too few elements: your function may apply hd or tl to the empty list in this case, which is okay.
+ *)
+ 
