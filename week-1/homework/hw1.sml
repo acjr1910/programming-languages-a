@@ -1,6 +1,6 @@
 (* Data Definitions *)
 
-(* Date is (int * int * int), where: *)
+(* date is (int * int * int), where: *)
 (* (#1 date) is year *)
 (* (#2 date) is month *)
 (* (#3 date) is day *)
@@ -58,3 +58,24 @@ fun dates_in_months(lod: (int * int * int) list,  lom: int list) =
      if n = 1
      then hd los
      else get_nth(tl los, n - 1)
+
+(* 7. Write a function date_to_string that takes a date and returns a string of the form January 20, 2013 (for example). Use the operator ^ for concatenating strings and the library function Int.toString for converting an int to a string. For producing the month part, do not use a bunch of conditionals. Instead, use a list holding 12 strings and your answer to the previous problem. For consistency, put a comma following the day and use capitalized English month names: January, February, March, April, May, June, July, August, September, October, November, December. *)
+
+fun date_to_string(date: (int * int * int)) =
+     let val lom = ["January", "February","March", "April", "May","June", "July", "August", "September", "October", "November", "December"];
+     in
+         get_nth(lom, #2 date) ^ " " ^ Int.toString(#3 date) ^ "," ^ " " ^ Int.toString(#1 date)
+     end
+
+(* 8. Write a function number_before_reaching_sum that takes an int called sum, which you can assume is positive, and an int list, which you can assume contains all positive numbers, and returns an int. You should return an int n such that the first n elements of the list add to less than sum, but the first n + 1 elements of the list add to sum or more. Assume the entire list sums to more than the passed in value; it is okay for an exception to occur if this is not the case. *)
+
+fun number_before_reaching_sum(sum: int, lon: int list) =
+     if (sum - hd lon) - (hd (tl lon)) = 0
+     then hd lon
+     else number_before_reaching_sum((sum - hd lon), (tl lon))
+
+(* 9. Write a function what_month that takes a day of year (i.e., an int between 1 and 365) and returns what month that day is in (1 for January, 2 for February, etc.). Use a list holding 12 integers and your answer to the previous problem. *)
+
+(* 10. Write a function month_range that takes two days of the year day1 and day2 and returns an int list [m1,m2,...,mn] where m1 is the month of day1, m2 is the month of day1+1, ..., and mn is the month of day day2. Note the result will have length day2 - day1 + 1 or length 0 if day1>day2. *)
+
+(* Write a function oldest that takes a list of dates and evaluates to an (int*int*int) option. It evaluates to NONE if the list has no dates and SOME d if the date d is the oldest date in the list. *)
