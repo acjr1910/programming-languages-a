@@ -69,21 +69,51 @@ fun date_to_string(date: (int * int * int)) =
 
 (* 8. Write a function number_before_reaching_sum that takes an int called sum, which you can assume is positive, and an int list, which you can assume contains all positive numbers, and returns an int. You should return an int n such that the first n elements of the list add to less than sum, but the first n + 1 elements of the list add to sum or more. Assume the entire list sums to more than the passed in value; it is okay for an exception to occur if this is not the case. *)
 
-fun number_before_reaching_sum(sum: int, lon: int list) =
-     if (sum - hd lon) - (hd (tl lon)) = 0
-     then hd lon
-     else number_before_reaching_sum((sum - hd lon), (tl lon))
+fun number_before_reaching_sum(sum: int, ns: int list) =
+    let
+        fun sum_with_acc(acc: int, n: int, ns: int list) =
+            if null ns
+            then n
+            else
+                if acc + (hd ns) >= sum
+                then n
+                else sum_with_acc(acc + (hd ns), n + 1, (tl ns))
+    in
+        sum_with_acc(0, 0, ns)
+    end
 
 (* 9. Write a function what_month that takes a day of year (i.e., an int between 1 and 365) and returns what month that day is in (1 for January, 2 for February, etc.). Use a list holding 12 integers and your answer to the previous problem. *)
 
 fun what_month(day: int) =
-     let val n = ceil (real day / real 30)
+     let
+          val acc_months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
      in
-          if n > 12
-          then 12
-          else n
+          number_before_reaching_sum(day, acc_months) + 1
      end
 
 (* 10. Write a function month_range that takes two days of the year day1 and day2 and returns an int list [m1,m2,...,mn] where m1 is the month of day1, m2 is the month of day1+1, ..., and mn is the month of day day2. Note the result will have length day2 - day1 + 1 or length 0 if day1>day2. *)
+fun month_range(d1: int, d2: int) =
+    if d1 > d2
+    then []
+    else what_month(d1) :: month_range(d1 + 1, d2)
 
 (* 11. Write a function oldest that takes a list of dates and evaluates to an (int*int*int) option. It evaluates to NONE if the list has no dates and SOME d if the date d is the oldest date in the list. *)
+fun oldest(dates: (int*int*int) list) = 
+    if null dates
+    then NONE
+    else
+        let
+            fun find_older_than(dates: (int*int*int) list, oldest_date: int*int*int) =
+                if null dates
+                then oldest_date
+                else
+                    let
+                        val current_date = hd dates
+                    in
+                        if is_older(current_date, oldest_date)
+                        then find_older_than(tl dates, current_date)
+                        else find_older_than(tl dates, oldest_date)
+                    end
+        in
+            SOME (find_older_than(tl dates, hd dates))
+        end
