@@ -7,13 +7,9 @@
 
 (* 1 - Write a function is_older that takes two dates and evaluates to true or false. It evaluates to true if the first argument is a date that comes before the second argument. (If the two dates are the same, the result is false.) *)
 fun is_older(dt1 : int*int*int, dt2: int*int*int) =
-    if (#1 dt1) > (#1 dt2)
-    then false
-    else if (#2 dt1) > (#2 dt2)
-         then false
-         else if (#3 dt1) > (#3 dt2)
-              then false
-              else true
+    (#1 dt1) < (#1 dt2)
+        orelse ((#1 dt1) = (#1 dt2) andalso (#2 dt1) < (#2 dt2))
+        orelse ((#1 dt1) = (#1 dt2) andalso (#2 dt1) = (#2 dt2) andalso (#3 dt1) < (#3 dt2))
 
 (* 2 - Write a function number_in_month that takes a list of dates and a month (i.e., an int) and returns how many dates in the list are in the given month. *)
 fun number_in_month(lod: (int * int * int) list, month: int) =
@@ -69,19 +65,11 @@ fun date_to_string(date: (int * int * int)) =
 
 (* 8. Write a function number_before_reaching_sum that takes an int called sum, which you can assume is positive, and an int list, which you can assume contains all positive numbers, and returns an int. You should return an int n such that the first n elements of the list add to less than sum, but the first n + 1 elements of the list add to sum or more. Assume the entire list sums to more than the passed in value; it is okay for an exception to occur if this is not the case. *)
 
-fun number_before_reaching_sum(sum: int, ns: int list) =
-    let
-        fun sum_with_acc(acc: int, n: int, ns: int list) =
-            if null ns
-            then n
-            else
-                if acc + (hd ns) >= sum
-                then n
-                else sum_with_acc(acc + (hd ns), n + 1, (tl ns))
-    in
-        sum_with_acc(0, 0, ns)
-    end
-
+fun number_before_reaching_sum(sum: int, lst: int list) =
+    if sum <= hd lst
+    then 0
+    else 1 + number_before_reaching_sum(sum - hd lst, tl lst)
+    
 (* 9. Write a function what_month that takes a day of year (i.e., an int between 1 and 365) and returns what month that day is in (1 for January, 2 for February, etc.). Use a list holding 12 integers and your answer to the previous problem. *)
 
 fun what_month(day: int) =

@@ -5,7 +5,7 @@
 
 use "/Users/acjunior/Documents/Repos/pl-a/week-1/homework/hw1.sml";
 
-val test1 = is_older ((1,2,3),(1,2,3)) = true
+val test1 = is_older ((1,2,3),(1,2,3)) = false
 
 val test2 = number_in_month ([(2012,2,28),(2013,12,1), (2015,2,1), (2015,3,10), (2003,2,1)],2) = 3
 
