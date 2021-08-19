@@ -3,9 +3,13 @@
 (* To run the test, add a new line to the top of this file: use "homeworkname.sml"; *)
 (* All the tests should evaluate to true. For example, the REPL should say: val test1 = true : bool *)
 
-val test1 = all_except_option ("string", ["string"]) = SOME []
+use "/Users/acjunior/Documents/Repos/pl-a/week-2/homework/hw2.sml";
 
-val test2 = get_substitutions1 ([["foo"],["there"]], "foo") = []
+val test_all_except_option = all_except_option ("string", ["string"]) = SOME []
+val test_all_except_option_1 = all_except_option ("string", ["number", "string", "boolean"]) = SOME ["number", "boolean"]
+val test1_all_except_option_2 = all_except_option ("xxx", ["number", "string", "boolean"]) = NONE
+
+(* val test2 = get_substitutions1 ([["foo"],["there"]], "foo") = []
 
 val test3 = get_substitutions2 ([["foo"],["there"]], "foo") = []
 
@@ -36,6 +40,6 @@ val test13 = ((officiate([(Clubs,Jack),(Spades,Num(8))],
                          [Draw,Discard(Hearts,Jack)],
                          42);
                false) 
-              handle IllegalMove => true)
+              handle IllegalMove => true) *)
              
              
