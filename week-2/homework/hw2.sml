@@ -30,6 +30,30 @@ fun get_substitutions1(losl: string list list, s: string) =
                      SOME y => y @ get_substitutions1(xs ,s)
                      | NONE => get_substitutions1(xs ,s)
 
+(* Write a function get_substitutions2, which is like get_substitutions1 except it uses a tail-recursive local helper function. *)
+fun get_substitutions2(losl: string list list, s: string) =
+   let fun aux(lst, acc) =
+            case lst of
+               [] => acc
+               | x::xs => case all_except_option(s, x) of
+                  NONE => aux(xs, acc)
+                  | SOME y => aux(xs, acc @ y)
+   in
+      aux(losl,[])
+   end
+
+(* Write a function similar_names, which takes a string list list of substitutions (as in parts (b) and (c)) and a full name of type {first:string,middle:string,last:string} and returns a list of full names (type {first:string,middle:string,last:string} list). The result is all the full names you can produce by substituting for the first name (and only the first name) using substitutions and parts (b) or (c). The answer should begin with the original name (then have 0 or more other names). *)
+(* Example:
+similar_names([["Fred","Fredrick"],["Elizabeth","Betty"],["Freddie","Fred","F"]],
+                   {first="Fred", middle="W", last="Smith"}) *)
+(* answer: [{first="Fred", last="Smith", middle="W"},
+                 {first="Fredrick", last="Smith", middle="W"},
+                 {first="Freddie", last="Smith", middle="W"},
+                 {first="F", last="Smith", middle="W"}] *)
+
+fun similar_names(losl: string list list, fullName: {first:string,middle:string,last:string}) = losl;
+
+
 (* you may assume that Num is always used with values 2, 3, ..., 10
    though it will not really come up *)
 datatype suit = Clubs | Diamonds | Hearts | Spades
