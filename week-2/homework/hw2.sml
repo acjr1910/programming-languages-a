@@ -19,6 +19,17 @@ fun all_except_option(str, strs) =
                                  NONE => NONE
                                  | SOME y => SOME (x::y);
 
+(* Write a function get_substitutions1, which takes a string list list (a list of list of strings, the substitutions) and a string s and returns a string list. The result has all the strings that are in some list in substitutions that also has s, but s itself should not be in the result.
+Example: get_substitutions1([["Fred","Fredrick"],["Elizabeth","Betty"],["Freddie","Fred","F"]], "Fred") *)
+(* answer: ["Fredrick","Freddie","F"] *)
+
+fun get_substitutions1(losl: string list list, s: string) =
+   case losl of
+      [] => []
+      | x::xs => case all_except_option(s, x) of
+                     SOME y => y @ get_substitutions1(xs ,s)
+                     | NONE => get_substitutions1(xs ,s)
+
 (* you may assume that Num is always used with values 2, 3, ..., 10
    though it will not really come up *)
 datatype suit = Clubs | Diamonds | Hearts | Spades
