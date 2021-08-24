@@ -32,12 +32,16 @@ val test_card_value_1 = card_value(Clubs, Num 2) = 2
 val test_card_value_2 = card_value(Clubs, Ace) = 11
 val test_card_value_3 = card_value(Clubs, Queen) = 10
 
-(* 
-val test7 = remove_card ([(Hearts, Ace)], (Hearts, Ace), IllegalMove) = []
 
-val test8 = all_same_color [(Hearts, Ace), (Hearts, Ace)] = true
+val test_remove_card_1 = remove_card([(Hearts, Ace)], (Hearts, Ace), IllegalMove) = []
+val test_remove_card_2 = remove_card([(Hearts, Ace), (Hearts, Num 2)], (Hearts, Ace), IllegalMove) = [(Hearts, Num 2)]
+val test_remove_card_3 = remove_card([(Hearts, Num 2), (Hearts, Ace), (Clubs, Queen)], (Hearts, Ace), IllegalMove) = [(Hearts, Num 2), (Clubs, Queen)]
 
-val test9 = sum_cards [(Clubs, Num 2),(Clubs, Num 2)] = 4
+val test_all_same_color_1 = all_same_color [(Hearts, Ace), (Hearts, Ace)] = true
+val test_all_same_color_2 = all_same_color [(Hearts, Ace), (Hearts, Ace), (Hearts, Ace)] = true
+val test_all_same_color_3 = all_same_color [(Hearts, Ace), (Clubs, Num 3), (Hearts, Ace)] = false
+
+(* val test9 = sum_cards [(Clubs, Num 2),(Clubs, Num 2)] = 4
 
 val test10 = score ([(Hearts, Num 2),(Clubs, Num 4)],10) = 4
 
