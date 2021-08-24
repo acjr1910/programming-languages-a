@@ -25,10 +25,14 @@ val test_similar_names_1 = similar_names ([["Fred","Fredrick"],["Elizabeth","Bet
 val test_similar_names_2 = similar_names ([["Fred","Fredrick"],["Elizabeth","Betty"],["Freddie","Fred","F"], ["Beth", "Betty", "Marina"], ["Eliza", "Maria"]], {first="Betty", middle="W", last="Smith"}) =
     [{first="Betty", middle="W", last="Smith"}, {first="Elizabeth", last="Smith", middle="W"}, {first="Beth", last="Smith", middle="W"}, {first="Marina", last="Smith", middle="W"}]
 
-(* val test5 = card_color (Clubs, Num 2) = Black
+val test_card_color_1 = card_color(Clubs, Num 2) = Black
+val test_card_color_2 = card_color(Hearts, Num 2) = Red
 
-val test6 = card_value (Clubs, Num 2) = 2
+val test_card_value_1 = card_value(Clubs, Num 2) = 2
+val test_card_value_2 = card_value(Clubs, Ace) = 11
+val test_card_value_3 = card_value(Clubs, Queen) = 10
 
+(* 
 val test7 = remove_card ([(Hearts, Ace)], (Hearts, Ace), IllegalMove) = []
 
 val test8 = all_same_color [(Hearts, Ace), (Hearts, Ace)] = true

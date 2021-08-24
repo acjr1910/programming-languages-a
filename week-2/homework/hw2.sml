@@ -75,3 +75,19 @@ datatype move = Discard of card | Draw
 exception IllegalMove
 
 (* put your solutions for problem 2 here *)
+
+(* Write a function card_color, which takes a card and returns its color (spades and clubs are black, diamonds and hearts are red). Note: One case-expression is enough. *)
+fun card_color(suit, _) =
+   case suit of
+      Spades => Black
+      | Clubs => Black
+      | Diamonds => Red
+      | Hearts => Red
+
+(* Write a function card_value, which takes a card and returns its value (numbered cards have their number as the value, aces are 11, everything else is 10). Note: One case-expression is enough. *)
+
+fun card_value(_, rank) =
+   case rank of 
+      Num value => value
+      | Ace => 11
+      | _ => 10
