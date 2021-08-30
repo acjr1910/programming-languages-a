@@ -5,7 +5,9 @@
 
 use "./hw3.sml";
 
-val test1 = only_capitals ["A","B","C"] = ["A","B","C"]
+val only_capitals_1 = only_capitals ["A","B","C"] = ["A","B","C"]
+val only_capitals_2 = only_capitals ["A","b","C"] = ["A","C"]
+val only_capitals_3 = only_capitals ["aGnalDo","Agnaldo","Junior"] = ["Agnaldo","Junior"]
 
 (* val test2 = longest_string1 ["A","bc","C"] = "bc" *)
 
