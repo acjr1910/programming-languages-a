@@ -3,7 +3,7 @@
 (* To run the test, add a new line to the top of this file: use "homeworkname.sml"; *)
 (* All the tests should evaluate to true. For example, the REPL should say: val test1 = true : bool *)
 
-use "/Users/acjunior/Documents/Repos/pl-a/week-2/homework/hw2.sml";
+use "./hw2.sml";
 
 val test_all_except_option = all_except_option ("string", ["string"]) = SOME []
 val test_all_except_option_1 = all_except_option ("string", ["number", "string", "boolean"]) = SOME ["number", "boolean"]
