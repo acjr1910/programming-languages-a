@@ -9,15 +9,18 @@ val only_capitals_1 = only_capitals ["A","B","C"] = ["A","B","C"]
 val only_capitals_2 = only_capitals ["A","b","C"] = ["A","C"]
 val only_capitals_3 = only_capitals ["aGnalDo","Agnaldo","Junior"] = ["Agnaldo","Junior"]
 
-(* val test2 = longest_string1 ["A","bc","C"] = "bc" *)
+val longest_string1_1 = longest_string1 ["A","bc","C"] = "bc"
+val longest_string1_2 = longest_string1 ["Abdsadad","bc","C"] = "Abdsadad"
+val longest_string1_3 = longest_string1 ["A","bc","dc"] = "bc"
 
-(* val test3 = longest_string2 ["A","bc","C"] = "bc" *)
+val longest_string2_1 = longest_string2 ["A","bc","C"] = "bc"
+val longest_string2_2 = longest_string2 ["A","bc","cf"] = "cf"
 
-(* val test4a = longest_string3 ["A","bc","C"] = "bc" *)
+val longest_string3_1 = longest_string3 ["A","bc","C"] = "bc"
 
-(* val test4b = longest_string4 ["A","B","C"] = "C" *)
+val longest_string4_1 = longest_string4 ["A","B","C"] = "C"
 
-(* val test5 = longest_capitalized ["A","bc","C"] = "A" *)
+val longest_capitalized_1 = longest_capitalized ["A","bc","C"] = "A";
 
 (* val test6 = rev_string "abc" = "cba" *)
 
