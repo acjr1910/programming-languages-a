@@ -70,3 +70,17 @@ val longest_string4 = longest_string_helper (op >=)
 (* Write a function longest_capitalized that takes a string list and returns the longest string in the list that begins with an uppercase letter, or "" if there are no such strings. Assume all strings have at least 1 character. Use a val-binding and the ML library’s o operator for composing functions. Resolve ties like in problem 2. *)
 
 val longest_capitalized =  longest_string3 o only_capitals
+
+(* Write a function rev_string that takes a string and returns the string that is the same characters in reverse order. Use ML’s o operator, the library function rev for reversing lists, and two library functions in the String module. (Browse the module documentation to find the most useful functions.) *)
+
+fun rev_string s = (String.implode o rev o String.explode) s
+
+(* Write a function first_answer of type (’a -> ’b option) -> ’a list -> ’b (notice the 2 arguments are curried).
+The first argument should be applied to elements of the second argument in order until the first time it returns SOME v for some v and then v is the result of the call to first_answer. If the first argument returns NONE for all list elements, then first_answer should raise the exception NoAnswer. Hints: Sample solution is 5 lines and does nothing fancy. *)
+
+fun first_answer f x = 
+    case x of
+			[] => raise NoAnswer
+				| (x::xs) => case f(x) of
+							NONE => first_answer f xs
+						| SOME v => v
